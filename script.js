@@ -14,23 +14,28 @@ const again = document.querySelector('.again')
 const displayMessage = message => document.querySelector('.message').textContent = message
 
 
+//Event listener to check the guess value
 check.addEventListener('click', function(){
   const guess = Number(document.querySelector('.guess').value)
+  //When the guess is empty
   if(!guess){
     displayMessage('👎 No Number')
   }
+  //When it is equal to randomScore 
   else if(guess === randomScore){
     displayMessage('You win')
     document.querySelector('.number').textContent = randomScore;
     document.querySelector('body').style.backgroundColor = '#60b347';
+    document.querySelector('body').style.backgroundImage = "url('6ob.gif')";
     document.querySelector('.number').style.width = '30rem'
     
+
     if(score > highscore){
       highscore = score;
       document.querySelector('.highscore').textContent = highscore;
     }
-
   }
+  //When it is not equal to
   else if(guess !== randomScore){
     if(score > 1){
       displayMessage(guess > randomScore ? 'Number Too high' : 'Number Too low')
@@ -42,6 +47,7 @@ check.addEventListener('click', function(){
   }
 })
 
+//Event listener to start the game again
 again.addEventListener('click', function(){
   randomScore = Math.trunc(Math.random()* 20) + 1
   document.querySelector('.score').textContent = 20;
@@ -52,6 +58,7 @@ again.addEventListener('click', function(){
 
   document.querySelector('.number').textContent = '?';
   document.querySelector('.guess').value = '';
+  document.querySelector('body').style.backgroundImage = "";
 })
 
 
